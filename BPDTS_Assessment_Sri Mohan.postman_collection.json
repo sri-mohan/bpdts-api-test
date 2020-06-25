@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "878ebd80-49cc-433d-b7a3-8ec13a425054",
+		"name": "BPDTS_Assessment_Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test case to validate Status 200_city with list of users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d72acb1a-02d2-49bc-b9c7-80169d8efdea",
+						"exec": [
+							"pm.test(\"Verify success status code 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify number of users returned for the city\", function (){\r",
+							"    pm.expect(pm.response.json().length).to.eql(6);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://bpdts-test-app-v2.herokuapp.com/city/London/users",
+					"protocol": "http",
+					"host": [
+						"bpdts-test-app-v2",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"city",
+						"London",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test case to validate Status 200_City without users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a9a7169-96a0-4b6f-b901-49dfae6fdfa7",
+						"exec": [
+							"pm.test(\"Verify success status code 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify the empty body response\", function () {\r",
+							"    pm.response.to.have.body('[]\\n');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://bpdts-test-app-v2.herokuapp.com/city/Sheffield/users",
+					"protocol": "http",
+					"host": [
+						"bpdts-test-app-v2",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"city",
+						"Sheffield",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test case to validate Status 200_Instructions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1640b0f4-be6c-4aab-8e4f-e513dda7b548",
+						"exec": [
+							"pm.test(\"Verify success status code 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://bpdts-test-app-v2.herokuapp.com/instructions",
+					"protocol": "http",
+					"host": [
+						"bpdts-test-app-v2",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"instructions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test case to validate Status 200_Get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a81f1d8b-5d11-44b3-9efb-db5d61203f81",
+						"exec": [
+							"pm.test(\"Verify success status code 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"//To find the count of users returned\r",
+							"    responseJson = JSON.parse(responseBody);\r",
+							"\r",
+							"//Finding the count of user records and log in console - check the number and then validate\r",
+							"    var list = responseJson.length;\r",
+							"    console.log(list);\r",
+							"   tests[\"Validate service retuns 1000 records\"] = list === 1000;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://bpdts-test-app-v2.herokuapp.com/users",
+					"protocol": "http",
+					"host": [
+						"bpdts-test-app-v2",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test case to validateStatus 200_Get user  details by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ace6017f-e7ef-47b7-8e79-452095341e52",
+						"exec": [
+							"pm.test(\"Verify success status code 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify first_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.first_name).to.eql('Curtis');\r",
+							"});\r",
+							"pm.test(\"Verify last_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.last_name).to.eql('Headan');\r",
+							"});\r",
+							"pm.test(\"Verify email\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql('cheadanc@nytimes.com');\r",
+							"});\r",
+							"pm.test(\"Verify City\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.city).to.eql(\"Antsohihy\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://bpdts-test-app-v2.herokuapp.com/user/13",
+					"protocol": "http",
+					"host": [
+						"bpdts-test-app-v2",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test case to validate Status 404_Invalid user id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4dc4793e-f8cb-46d0-8552-848059dd0e76",
+						"exec": [
+							"pm.test(\"Verify 404 status code\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify 404 code message\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Id 4815 doesn\\'t exist\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://bpdts-test-app-v2.herokuapp.com/user/4815",
+					"protocol": "http",
+					"host": [
+						"bpdts-test-app-v2",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"4815"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
