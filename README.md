@@ -16,6 +16,6 @@ Step 4: Open Postman tool, Import the collections
 Step 5: Run the Automation suite from Postman options against the BPDTS_Assessment_Tests
 
 ### Prerequisites
-In order to verify and validate the tests below tools required
+In order to verify and validate the tests below tools are required
 a) Postman
 b) Gitbash
