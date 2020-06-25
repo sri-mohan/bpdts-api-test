@@ -1,4 +1,4 @@
-## Automated API tests for the beloow provided Swagger API documentation contract
+## Automated API tests for the given Swagger API documentation contract
 http://bpdts-test-app-v2.herokuapp.com/
 
 
